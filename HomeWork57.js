@@ -99,3 +99,26 @@ function printSet(set1){
     }
     return result;
 }
+
+//My Test
+let allPost = new AllPosts();
+
+let user = new User("Jamshid", "Ravshan");
+
+let post = new Post("Best Programming", "The text of this lesson");
+let post2 = new Post("Best Books", "Books description");
+
+allPost.addPostToAll(post);
+allPost.addPostToAll(post2);
+
+
+
+user.addPostsLiked(allPost.getWithId(post.id));
+user.addPostsLiked(allPost.getWithId(post2.id));
+
+let comment = new Commentary("This is a commentary to post");
+allPost.getWithId(post.id).addCommentary(comment, user);
+let comment2 = new Commentary("This is a second com to post");
+allPost.getWithId(post.id).addCommentary(comment2, user);
+
+console.log(allPost.toPrint())
