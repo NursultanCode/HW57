@@ -86,3 +86,16 @@ function Commentary(text) {
         return `wrote by: ${user.getFirstName()} \n commentary: ${text}`
     };
 }
+
+//Auto generate Id for objects
+function getId() {
+    return '_' + Math.random().toString(36).substr(2, 9);
+}
+//printing info without set
+function printSet(set1){
+    let result = "";
+    for (let item of set1.values()) {
+        result+=`\n                ${item.info()}`;
+    }
+    return result;
+}
