@@ -54,3 +54,24 @@ function Post(title, description) {
         return `post: ${this.id} ${this.title} ${this.description}`
     };
 }
+
+//AlPosts
+function AllPosts() {
+    this.allPosts = new Map();
+    this.addPostToAll = function (post) {
+        this.allPosts.set(post.id, post)
+    }
+    this.getWithId = function(id){
+        return this.allPosts.get(id);
+    }
+    this.toPrint = function(){
+        let res = "All Posts\n";
+        for(const item of this.allPosts.values()){
+            res+=`${item.toString()} \n`
+        }
+        return res;
+    }
+    this.getPosts= function(){
+        return this.allPosts;
+    }
+}
