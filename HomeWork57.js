@@ -75,3 +75,14 @@ function AllPosts() {
         return this.allPosts;
     }
 }
+
+//commentaries
+function Commentary(text) {
+    this.id = getId();
+    this.text = text;
+    this.user = {};
+    this.post = {};
+    this.info = function(){
+        return `wrote by: ${user.getFirstName()} \n commentary: ${text}`
+    };
+}
