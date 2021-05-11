@@ -28,3 +28,29 @@ function User(firstName, lastName) {
         return `User\n ${this.id} ${this.firstName} ${this.lastName}`
     };
 }
+
+//Class of Post
+function Post(title, description) {
+    this.id = getId();
+    this.title = title;
+    this.description = description;
+    this.usersLiked = new Map();
+    this.commentaries = new Map();
+    //methods
+    this.getUsersLikedList = function() {
+        return this.usersLiked;
+    };
+    this.addCommentary = function (commentary, user) {
+        this.commentaries.set(commentary.id,commentary);
+        user.addComment(commentary);
+        commentary.user = commentary;
+        commentary.post = post;
+    }
+    this.toString = function(){
+        return `Post\n ${this.id} ${this.title} ${this.description} \nLiked By:${printSet(this.usersLiked)} \nCommentary${printSet(this.commentaries)}`
+    };
+
+    this.info = function(){
+        return `post: ${this.id} ${this.title} ${this.description}`
+    };
+}
