@@ -24,7 +24,7 @@ function createCommentElement(comment){
         <!-- Contenedor del Comentario -->
         <div class="comment-box">
         <div class="comment-head">
-        <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">${comment.getUser().firstName} ${comment.getUser().lastName}</a></h6>
+        <h6 class="comment-name"><a href="http://creaticode.com/blog">${comment.getUser().firstName} ${comment.getUser().lastName}</a></h6>
     <i class="fa fa-reply"></i>
         <i class="fa fa-heart"></i>
         </div>
@@ -36,6 +36,7 @@ function createCommentElement(comment){
     ready.innerHTML = InComment;
     document.getElementById("comments-list").append(ready);
 }
+
 //Test for createPostElement function write in console
 /*
     let post = new Post("Best Programming", "The text of this lesson");
@@ -77,6 +78,7 @@ function createPostElement(post){
 							</div>`;
     addPost(postHTML);
 }
+
 function addPost(postElement){
     var container = document.getElementById("comments-container");
     var adding = document.createElement("div");
