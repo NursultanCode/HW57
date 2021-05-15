@@ -9,12 +9,14 @@ function showSplashScreen() {
     com.style.visibility = 'visible'
 }
 
-//Test for this function
-//let user = new User("Jamshid", "Ravshan");
-//let post = new Post("Best Programming", "The text of this lesson");
-//let comment = new Commentary("This is a commentary to post");
-// post.addCommentary(comment, user);
-//createCommentElement(comment)
+//Test for this function write in console
+/*
+let user = new User("Jamshid", "Ravshan");
+let post = new Post("Best Programming", "The text of this lesson");
+let comment = new Commentary("This is a commentary to post");
+post.addCommentary(comment, user);
+createCommentElement(comment)
+*/
 function createCommentElement(comment){
     var InComment = `<div class="comment-main-level">
         <!-- Avatar -->
@@ -22,15 +24,17 @@ function createCommentElement(comment){
         <!-- Contenedor del Comentario -->
         <div class="comment-box">
         <div class="comment-head">
-        <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">${comment.user.firstName} ${comment.user.lastName}</a></h6>
+        <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">${comment.getUser().firstName} ${comment.getUser().lastName}</a></h6>
     <i class="fa fa-reply"></i>
         <i class="fa fa-heart"></i>
         </div>
         <div class="comment-content">
-        ${comment.text()}
+        ${comment.text}
     </div>
     </div>`
-    document.getElementById("comments-list").append(InComment);
+    var ready = document.createElement("li");
+    ready.innerHTML = InComment;
+    document.getElementById("comments-list").append(ready);
 }
 
 
@@ -54,6 +58,9 @@ function User(firstName, lastName) {
     };
     this.getFirstName= function(){
         return this.firstName;
+    }
+    this.getLastName= function(){
+        return this.lastName;
     }
     this.changeLogin = function(){
         this.login = !this.login;
@@ -83,7 +90,7 @@ function Post(title, description) {
     this.addCommentary = function (commentary, user) {
         this.commentaries.set(commentary.id,commentary);
         user.addComment(commentary);
-        commentary.user = commentary;
+        commentary.user = user;
         commentary.post = post;
     }
     this.toString = function(){
@@ -125,6 +132,9 @@ function Commentary(text) {
     this.info = function(){
         return `wrote by: ${user.getFirstName()} \n commentary: ${text}`
     };
+    this.getUser = function () {
+        return this.user;
+    }
 }
 
 //Auto generate Id for objects
