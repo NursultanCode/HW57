@@ -1,3 +1,39 @@
+//HOME WORK 58
+//showSplashScreen function
+function hideSplashScreen() {
+    var com = document.getElementById("comments-container");
+    com.style.visibility = 'hidden'
+}
+function showSplashScreen() {
+    var com = document.getElementById("comments-container");
+    com.style.visibility = 'visible'
+}
+
+//Test for this function
+//let user = new User("Jamshid", "Ravshan");
+//let post = new Post("Best Programming", "The text of this lesson");
+//let comment = new Commentary("This is a commentary to post");
+// post.addCommentary(comment, user);
+//createCommentElement(comment)
+function createCommentElement(comment){
+    var InComment = `<div class="comment-main-level">
+        <!-- Avatar -->
+        <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+        <!-- Contenedor del Comentario -->
+        <div class="comment-box">
+        <div class="comment-head">
+        <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">${comment.user.firstName} ${comment.user.lastName}</a></h6>
+    <i class="fa fa-reply"></i>
+        <i class="fa fa-heart"></i>
+        </div>
+        <div class="comment-content">
+        ${comment.text()}
+    </div>
+    </div>`
+    document.getElementById("comments-list").append(InComment);
+}
+
+
 //Class of User
 function User(firstName, lastName) {
     this.id = getId();
@@ -11,6 +47,10 @@ function User(firstName, lastName) {
     this.addPostsLiked = function (post) {
         this.postsLiked.set(post.id,post);
         post.getUsersLikedList().set(this.id,this);
+    };
+    this.unlikePostsLiked = function (post) {
+        this.postsLiked.delete(post.id);
+        post.getUsersLikedList().delete(this.id);
     };
     this.getFirstName= function(){
         return this.firstName;
@@ -100,10 +140,12 @@ function printSet(set1){
     return result;
 }
 
-//My Test
+/*
+//My Test for homeWork 57
 let allPost = new AllPosts();
 
 let user = new User("Jamshid", "Ravshan");
+let user2 = new User("Imamali", "Rahmon");
 
 let post = new Post("Best Programming", "The text of this lesson");
 let post2 = new Post("Best Books", "Books description");
@@ -121,4 +163,4 @@ allPost.getWithId(post.id).addCommentary(comment, user);
 let comment2 = new Commentary("This is a second com to post");
 allPost.getWithId(post.id).addCommentary(comment2, user);
 
-console.log(allPost.toPrint())
+console.log(allPost.toPrint())*/
