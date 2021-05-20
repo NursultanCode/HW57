@@ -7,6 +7,14 @@
     let post2 = new Post("Best Programming", "https://bit.ly/2RygLHh");
     createPost(post2);
 */
+function fhidingShowing() {
+    var x = document.getElementById("post");
+    if (x.style.display === "none") {
+        hideSplashScreen(x);
+    } else {
+        showSplashScreen(x);
+    }
+}
 
 function likeOnImage(post) {
     var likeImg = document.createElement("div");
@@ -67,13 +75,11 @@ function createPost(postObject) {
 
 //HOME WORK 58
 //showSplashScreen function
-function hideSplashScreen() {
-    $('body').style.visibility = "hidden";
-    document.body.style.overflow = 'hidden';
+function hideSplashScreen(x) {
+    x.style.display = "block";
 }
-function showSplashScreen() {
-    $('body').style.visibility = "visible";
-    document.body.style.overflow = 'visible';
+function showSplashScreen(x) {
+    x.style.display = "none";
 }
 
 //Test for createCommentElement function write in console
