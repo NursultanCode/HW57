@@ -4,6 +4,13 @@
  * Detalle: #c7cacb
  * Fondo: #dee1e3
  ----------------------------------*/
+.caption {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    width: 100%;
+    color: red;
+}
 * {
     margin: 0;
     padding: 0;

@@ -1,3 +1,70 @@
+//Home Work 59
+//Test for HomeWork 59
+//Test for post
+/*
+    let post = new Post("Best Programming", "https://bit.ly/2RygLHh");
+    createPost(post);
+    let post2 = new Post("Best Programming", "https://bit.ly/2RygLHh");
+    createPost(post2);
+*/
+
+function likeOnImage(post) {
+    var likeImg = document.createElement("div");
+    likeImg.className = "h1 caption fas fa-heart";
+    let imgT = "imgT"+post.id;
+    likeImg.id = "like12";
+    let imgId = "img"+post.id;
+    var result = document.getElementById(imgId).append(likeImg);
+    setTimeout(function () {document.getElementById('like12').remove()}, 1000);
+    likeAction(post)
+}
+
+function likeAction(post){
+    let id = "like" + post.id;
+    const like = document.getElementById(id);
+    if (like.className === "far fa-heart"){
+        like.className = "fas fa-heart";
+    }else {
+        like.className = "far fa-heart";
+    }
+}
+function bookmarkAction(post) {
+    let id = "bookmark" + post.id;
+    const like = document.getElementById(id);
+    if (like.className === "far fa-bookmark"){
+        like.className = "fas fa-bookmark";
+    }else {
+        like.className = "far fa-bookmark";
+    }
+}
+function createPost(postObject) {
+    txt = `<div class="align-center card col-lg-6 col-md-12">
+    <div id="img${postObject.id}">
+        <img src="${postObject.url}" class="card-img-top" alt="...">
+    </div>
+    <div class="card-body">
+        <span class="h1 mx-2 muted"><i class="far fa-heart" id="like${postObject.id}"></i></span>
+        <span class="h1 mx-2 muted float-right"><i class="far fa-bookmark" id="bookmark${postObject.id}"></i></span>
+    </div>
+</div>`
+    var el = document.createElement("div");
+    el.innerHTML = txt;
+    document.getElementById("post").append(el);
+    var like = document.getElementById(`like${postObject.id}`);
+    like.addEventListener('click',function () {
+        likeAction(postObject);
+    })
+    var bookmark = document.getElementById(`bookmark${postObject.id}`);
+    bookmark.addEventListener('click',function () {
+        bookmarkAction(postObject);
+    })
+    var img = document.getElementById(`img${postObject.id}`);
+    img.addEventListener('dblclick',function () {
+        likeOnImage(postObject);
+    })
+}
+
+
 //HOME WORK 58
 //showSplashScreen function
 function hideSplashScreen() {
@@ -42,7 +109,7 @@ function createCommentElement(comment){
     let post = new Post("Best Programming", "The text of this lesson");
     createPostElement(post);
  */
-function createPostElement(post){
+/*function createPostElement(post){
     var postHTML = `<div class="border p-2">
 						<!-- post header -->
 						<div class="row m-0">
@@ -77,7 +144,7 @@ function createPostElement(post){
 								</ul>
 							</div>`;
     addPost(postHTML);
-}
+}*/
 
 function addPost(postElement){
     var container = document.getElementById("comments-container");
@@ -126,10 +193,10 @@ function User(firstName, lastName) {
 }
 
 //Class of Post
-function Post(title, description) {
+function Post(title, url) {
     this.id = getId();
     this.title = title;
-    this.description = description;
+    this.url = url;
     this.usersLiked = new Map();
     this.commentaries = new Map();
     //methods
