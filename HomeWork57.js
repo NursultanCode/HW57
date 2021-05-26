@@ -1,5 +1,16 @@
 //lab 61
-
+function loadPosts(){
+    fetch("https://jsonplaceholder.typicode.com/posts")
+        .then(function (response){
+            return response.text();
+        })
+        .then(function (text) {
+            var fromJSON = JSON.parse(text);
+            fromJSON.forEach(function (item) {
+                createPost(item);
+            })
+        })
+}
 
 
 //Home Work 60
@@ -66,10 +77,12 @@ function bookmarkAction(post) {
 function createPost(postObject) {
     txt = `<div class="align-center card col-lg-6 col-md-12">
     <div id="img${postObject.id}">
-        <img src="${postObject.url}" class="card-img-top" alt="...">
+        <h1>${postObject.title}</h1>
+        <p>${postObject.body}</p>
     </div>
     <div class="card-body">
         <span class="h1 mx-2 muted"><i class="far fa-heart" id="like${postObject.id}"></i></span>
+        <span class="h1 mx-2 muted"><i class="far fa-comment" id="like${postObject.id}"></i></span>
         <span class="h1 mx-2 muted float-right"><i class="far fa-bookmark" id="bookmark${postObject.id}"></i></span>
     </div>
 </div>`
