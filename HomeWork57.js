@@ -1,5 +1,20 @@
-//Home Work 60
+//lab 61
 
+
+
+//Home Work 60
+async function postHandler(e) {
+    const inpFile = document.getElementById("imgUpload");
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    console.log(Object.fromEntries(data));
+    settings = {
+        method: 'POST',
+        body: data
+    };
+    await fetch("http://localhost:8080/api/test", settings);
+}
 
 //Home Work 59
 //Test for HomeWork 59
@@ -118,43 +133,6 @@ function createCommentElement(comment){
     let post = new Post("Best Programming", "The text of this lesson");
     createPostElement(post);
  */
-/*function createPostElement(post){
-    var postHTML = `<div class="border p-2">
-						<!-- post header -->
-						<div class="row m-0">
-							<div class="flex-grow-1 pl-2">
-								<a class="text-decoration-none" href="#">
-									<h2 class="text-capitalize h5 mb-0">${post.title}</h2>
-								</a> 
-							</div>
-						</div>
-						<!-- post body -->
-						<div class="">
-							<p class="my-2">
-								${post.description}
-							</p>
-						</div>
-						<hr class="my-1">
-						<!-- post footer begins -->
-						<footer class="">
-							<!-- post actions -->
-							<div class="">
-								<ul class="list-group list-group-horizontal">
-									<li class="list-group-item flex-fill text-center p-0 px-lg-2 border border-0">
-										<a class="small text-decoration-none" href="#">
-											<i class="far fa-thumbs-up"></i> n Like
-										</a>
-									</li>
-									<li class="list-group-item flex-fill text-center p-0 px-lg-2 border border-right-0 border-top-0 border-bottom-0">
-										<a class="small text-decoration-none" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-											<i class="fas fa-comment-alt"></i> n Comment
-										</a>
-									</li>
-								</ul>
-							</div>`;
-    addPost(postHTML);
-}*/
-
 function addPost(postElement){
     var container = document.getElementById("comments-container");
     var adding = document.createElement("div");
