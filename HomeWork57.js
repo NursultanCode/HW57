@@ -12,6 +12,21 @@ function loadPosts(){
         })
 }
 
+function showComments(e){
+    alert(e.target.parentElement.parentElement.parentElement.parentElement.getAttribute("id"))
+    var id  =e.target.parentElement.parentElement.parentElement.parentElement.getAttribute("id");
+    fetch(`https://jsonplaceholder.typicode.com/comments?postId=${id}`)
+        .then(function (response) {
+            return response.text()
+        })
+        .then(function (text) {
+            var JSONcomment = JSON.parse(text);
+            JSONcomment.forEach(function (item) {
+                createCommentElement(item)
+            })
+        })
+}
+
 
 //Home Work 60
 async function postHandler(e) {
@@ -82,11 +97,12 @@ function createPost(postObject) {
     </div>
     <div class="card-body">
         <span class="h1 mx-2 muted"><i class="far fa-heart" id="like${postObject.id}"></i></span>
-        <span class="h1 mx-2 muted"><i class="far fa-comment" id="like${postObject.id}"></i></span>
+        <span class="h1 mx-2 muted"><i class="far fa-comment" id="comment${postObject.id}"></i></span>
         <span class="h1 mx-2 muted float-right"><i class="far fa-bookmark" id="bookmark${postObject.id}"></i></span>
     </div>
 </div>`
     var el = document.createElement("div");
+    el.setAttribute('id',postObject.id);
     el.innerHTML = txt;
     document.getElementById("post").append(el);
     var like = document.getElementById(`like${postObject.id}`);
@@ -97,6 +113,8 @@ function createPost(postObject) {
     bookmark.addEventListener('click',function () {
         bookmarkAction(postObject);
     })
+    var comment = document.getElementById(`comment${postObject.id}`);
+    comment.addEventListener('click', showComments)
     var img = document.getElementById(`img${postObject.id}`);
     img.addEventListener('dblclick',function () {
         likeOnImage(postObject);
