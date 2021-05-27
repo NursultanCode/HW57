@@ -20,6 +20,8 @@ function showComments(e){
             return response.text()
         })
         .then(function (text) {
+            console.log(text)
+            hidingShowingComments(id);
             var JSONcomment = JSON.parse(text);
             JSONcomment.forEach(function (item) {
                 createCommentElement(item)
@@ -159,17 +161,17 @@ function createCommentElement(comment){
         <!-- Contenedor del Comentario -->
         <div class="comment-box">
         <div class="comment-head">
-        <h6 class="comment-name"><a href="http://creaticode.com/blog">${comment.getUser().firstName} ${comment.getUser().lastName}</a></h6>
+        <h6 class="comment-name"><a href="http://creaticode.com/blog">${comment.name}</a></h6>
     <i class="fa fa-reply"></i>
         <i class="fa fa-heart"></i>
         </div>
         <div class="comment-content">
-        ${comment.text}
+        ${comment.body}
     </div>
     </div>`
     var ready = document.createElement("li");
     ready.innerHTML = InComment;
-    document.getElementById("comments-list").append(ready);
+    document.getElementById(`postComment${comment.postId}`).append(ready);
 }
 
 //Test for createPostElement function write in console
