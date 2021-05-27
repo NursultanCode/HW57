@@ -60,6 +60,15 @@ function fhidingShowing() {
     }
 }
 
+function hidingShowingComments(id) {
+    var x = document.getElementById(`postComment${id}`);
+    if (x.style.display === "none") {
+        hideSplashScreen(x);
+    } else {
+        showSplashScreen(x);
+    }
+}
+
 function likeOnImage(post) {
     var likeImg = document.createElement("div");
     likeImg.className = "h1 caption fas fa-heart";
@@ -99,7 +108,11 @@ function createPost(postObject) {
         <span class="h1 mx-2 muted"><i class="far fa-heart" id="like${postObject.id}"></i></span>
         <span class="h1 mx-2 muted"><i class="far fa-comment" id="comment${postObject.id}"></i></span>
         <span class="h1 mx-2 muted float-right"><i class="far fa-bookmark" id="bookmark${postObject.id}"></i></span>
+        <br>
+        <ul id="postComment${postObject.id}" style="display: none">
+</ul>
     </div>
+    
 </div>`
     var el = document.createElement("div");
     el.setAttribute('id',postObject.id);
