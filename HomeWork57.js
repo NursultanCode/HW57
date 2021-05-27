@@ -1,4 +1,7 @@
 //lab 61
+$(document).ready(function() {
+    loadPosts();
+});
 function loadPosts(){
     fetch("https://jsonplaceholder.typicode.com/posts")
         .then(function (response){
@@ -13,14 +16,12 @@ function loadPosts(){
 }
 
 function showComments(e){
-    alert(e.target.parentElement.parentElement.parentElement.parentElement.getAttribute("id"))
     var id  =e.target.parentElement.parentElement.parentElement.parentElement.getAttribute("id");
     fetch(`https://jsonplaceholder.typicode.com/comments?postId=${id}`)
         .then(function (response) {
             return response.text()
         })
         .then(function (text) {
-            console.log(text)
             hidingShowingComments(id);
             var JSONcomment = JSON.parse(text);
             JSONcomment.forEach(function (item) {
@@ -156,9 +157,6 @@ createCommentElement(comment)
 */
 function createCommentElement(comment){
     var InComment = `<div class="comment-main-level">
-        <!-- Avatar -->
-        <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
-        <!-- Contenedor del Comentario -->
         <div class="comment-box">
         <div class="comment-head">
         <h6 class="comment-name"><a href="http://creaticode.com/blog">${comment.name}</a></h6>
